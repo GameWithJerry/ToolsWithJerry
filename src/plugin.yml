@@ -5,3 +5,4 @@ main: de.gamewithjerry.autocrop.Main
 api-version: 1.15
 commands:
   spawnbeacon:
+  hat:
