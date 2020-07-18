@@ -6,13 +6,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Beacon {
 
@@ -24,18 +28,36 @@ public class Beacon {
 
     Inventory beaconInv = Bukkit.createInventory(null, InventoryType.BARREL, "Beacon Tier: " + beaconTier);
 
-
-
     public Beacon(Main plugin) {
         this.plugin = plugin;
     }
 
-    public void spawnBeacon(Player player) {
+    public void lootSetter() {
+
+        ItemStack test = new ItemStack(Material.STICK);
+        ItemMeta testMeta = test.getItemMeta();
+        testMeta.setDisplayName("Hi");
+        ArrayList<String> testLore = new ArrayList<>();
+        testLore.add("hi");
+        testMeta.setLore(testLore);
+        test.setItemMeta(testMeta);
+
+    }
+
+    public static void spawnBeacon(Player player) {
         World world = player.getWorld();
 
-        Location beaconSpawn = new Location(world, 1, 225,1);
+        Location beacon1 = new Location(world, -444,256, 40);
+        Location beacon2 = new Location(world, -445, 256, 40);
 
-        //world.spawnFallingBlock(beaconSpawn, Material.BON,1);
+        ArrayList<Location> beaconSpawnList = new ArrayList<>();
+        beaconSpawnList.add(beacon1);
+
+        Location beaconSpawn = beaconSpawnList.get((int) Math.random() * 2);
+
+        world.spawnFallingBlock(beaconSpawn, Material.BARREL, (byte) 1);
     }
+
+
 
 }
