@@ -24,16 +24,16 @@ public class Beacon {
 
     ArrayList<ItemStack> loot = new ArrayList<>();
 
-    int beaconTier;
+    public static int beaconTier;
 
-    Inventory beaconInv = Bukkit.createInventory(null, InventoryType.BARREL, "Beacon Tier: " + beaconTier);
+    public static Inventory beaconInv = Bukkit.createInventory(null, InventoryType.BARREL, "Beacon Tier: " + beaconTier);
 
     public Beacon(Main plugin) {
         this.plugin = plugin;
     }
 
-    public void lootSetter() {
-
+    public void openBeacon(Player player) {
+        //set Loot
         ItemStack test = new ItemStack(Material.STICK);
         ItemMeta testMeta = test.getItemMeta();
         testMeta.setDisplayName("Hi");
@@ -41,6 +41,16 @@ public class Beacon {
         testLore.add("hi");
         testMeta.setLore(testLore);
         test.setItemMeta(testMeta);
+
+        loot.add(test);
+
+        for(int x = 0; x <= 4; x++) {
+            int rndLoot = (int) Math.random() * loot.size();
+
+            beaconInv.addItem(loot.get(rndLoot));
+        }
+
+        player.openInventory(beaconInv);
 
     }
 
@@ -57,7 +67,4 @@ public class Beacon {
 
         world.spawnFallingBlock(beaconSpawn, Material.BARREL, (byte) 1);
     }
-
-
-
 }

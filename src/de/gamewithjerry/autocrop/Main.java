@@ -4,15 +4,20 @@ import de.gamewithjerry.autocrop.command.SpawnBeacon;
 import de.gamewithjerry.autocrop.listener.BlockRightClick;
 import de.gamewithjerry.autocrop.listener.BedListener;
 import de.gamewithjerry.autocrop.listener.DeathListener;
+import de.gamewithjerry.autocrop.listener.EntityChangeListener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new BlockRightClick(), this);
-        getServer().getPluginManager().registerEvents(new BedListener(), this);
-        getServer().getPluginManager().registerEvents(new DeathListener(), this);
+
+        PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new BlockRightClick(), this);
+        pluginManager.registerEvents(new BedListener(), this);
+        pluginManager.registerEvents(new DeathListener(), this);
+        pluginManager.registerEvents(new EntityChangeListener(), this);
 
         getCommand("spawnbeacon").setExecutor(new SpawnBeacon(this));
 

@@ -56,4 +56,14 @@ public class BlockRightClick implements Listener {
             }
         }
     }
+
+    @EventHandler
+    public void beaconClick(PlayerInteractEvent event) {
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if(event.getClickedBlock().getLocation() == EntityChangeListener.beaconBlockLocation) {
+
+            }
+        }
+    }
+
 }
