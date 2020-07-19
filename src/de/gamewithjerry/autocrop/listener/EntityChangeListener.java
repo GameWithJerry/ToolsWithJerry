@@ -20,7 +20,7 @@ public class EntityChangeListener implements Listener {
 
             if(fallenBlock.getBlockData().getMaterial().equals(Material.BARREL)) {
                 beaconBlockLocation = fallenBlock.getLocation();
-            } else {return;}
+            }
         }
     }
 }

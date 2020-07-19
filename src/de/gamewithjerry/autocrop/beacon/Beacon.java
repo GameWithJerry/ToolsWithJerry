@@ -2,10 +2,7 @@ package de.gamewithjerry.autocrop.beacon;
 
 import de.gamewithjerry.autocrop.Main;
 import net.minecraft.server.v1_16_R1.EntityPlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Chest;
@@ -22,7 +19,7 @@ public class Beacon {
 
     private Main plugin;
 
-    ArrayList<ItemStack> loot = new ArrayList<>();
+    public static ArrayList<ItemStack> loot = new ArrayList<>();
 
     public static int beaconTier;
 
@@ -32,7 +29,7 @@ public class Beacon {
         this.plugin = plugin;
     }
 
-    public void openBeacon(Player player) {
+    public static void openBeacon(Player player) {
         //set Loot
         ItemStack test = new ItemStack(Material.STICK);
         ItemMeta testMeta = test.getItemMeta();
@@ -57,14 +54,25 @@ public class Beacon {
     public static void spawnBeacon(Player player) {
         World world = player.getWorld();
 
+        ArrayList<Player> onlinePlayers = new ArrayList<>();
+        onlinePlayers.add((Player) world.getPlayers());
+
         Location beacon1 = new Location(world, -444,256, 40);
         Location beacon2 = new Location(world, -445, 256, 40);
 
         ArrayList<Location> beaconSpawnList = new ArrayList<>();
         beaconSpawnList.add(beacon1);
+        beaconSpawnList.add(beacon2);
 
-        Location beaconSpawn = beaconSpawnList.get((int) Math.random() * 2);
+        Location beaconSpawn = beaconSpawnList.get((int) Math.random() * beaconSpawnList.size());
 
         world.spawnFallingBlock(beaconSpawn, Material.BARREL, (byte) 1);
+
+
+
+        for(int x = 0; x >= onlinePlayers.size(); x++) {
+            onlinePlayers.get(x).sendMessage("");
+        }
+
     }
 }

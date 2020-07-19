@@ -1,5 +1,6 @@
 package de.gamewithjerry.autocrop.listener;
 
+import de.gamewithjerry.autocrop.beacon.Beacon;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -59,9 +60,11 @@ public class BlockRightClick implements Listener {
 
     @EventHandler
     public void beaconClick(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+
         if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(event.getClickedBlock().getLocation() == EntityChangeListener.beaconBlockLocation) {
-
+                Beacon.openBeacon(player);
             }
         }
     }
