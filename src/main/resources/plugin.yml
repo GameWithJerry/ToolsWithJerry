@@ -6,5 +6,5 @@ authors:
 main: de.gamewithjerry.toolswithjerry.Main
 api-version: 1.16
 commands:
-  spawnbeacon:
-  hat:
+  spawn:
+    description: Gehe zu deinem Bett oder zum Hauptspawn, wenn du kein Bett hast.

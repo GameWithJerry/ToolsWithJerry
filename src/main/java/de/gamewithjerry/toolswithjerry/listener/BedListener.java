@@ -16,13 +16,13 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class BedListener implements Listener {
 
     int playersInBed;
     BossBar sleepbar;
     Server server = Bukkit.getServer();
-    Collection onlinePlayers = server.getOnlinePlayers();
 
     public BedListener() {
         playersInBed = 0;
@@ -44,7 +44,7 @@ public class BedListener implements Listener {
     }
 
     private void checkPlayersInBed() {
-        List<Player> playersonline = Bukkit.getWorld("world").getPlayers();
+        List<Player> playersonline = Objects.requireNonNull(Bukkit.getWorld("world")).getPlayers();
         int neededPlayers = playersonline.size() / 3;
 
         if (neededPlayers <= 0){
@@ -53,17 +53,17 @@ public class BedListener implements Listener {
 
         sleepbar.removeAll();
         if(playersInBed > 0) {
-            sleepbar.setTitle("Schlafen um die Nacht zu überspringen (" + playersInBed + "/" + neededPlayers + ")");
+            sleepbar.setTitle("Schlafen, um die Nacht zu überspringen (" + playersInBed + "/" + neededPlayers + ")");
 
             if (!(playersInBed / neededPlayers > 1)) {
                 sleepbar.setProgress((double) playersInBed / neededPlayers);
             } else {
-                sleepbar.setProgress((double) 1);
+                sleepbar.setProgress(1);
             }
 
-            playersonline.forEach(player -> {
+            for(Player player : playersonline) {
                 sleepbar.addPlayer(player);
-            });
+            }
         }
 
         if (playersInBed >= neededPlayers){
@@ -79,7 +79,7 @@ public class BedListener implements Listener {
 
             try {
                 world.setStorm(false);
-            } catch (NullPointerException e){}
+            } catch (NullPointerException ignored){}
         }
     }
 }

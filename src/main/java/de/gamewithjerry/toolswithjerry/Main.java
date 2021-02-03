@@ -1,5 +1,6 @@
 package de.gamewithjerry.toolswithjerry;
 
+import de.gamewithjerry.toolswithjerry.commands.SpawnCommand;
 import de.gamewithjerry.toolswithjerry.listener.BlockRightClick;
 import de.gamewithjerry.toolswithjerry.listener.BedListener;
 import de.gamewithjerry.toolswithjerry.listener.DeathListener;
@@ -15,6 +16,8 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockRightClick(), this);
         pluginManager.registerEvents(new BedListener(), this);
         pluginManager.registerEvents(new DeathListener(), this);
+
+        getCommand("spawn").setExecutor(new SpawnCommand());
 
         System.out.println("[ToolsWithJerry] Plugin aktiviert!");
     }
