@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+version = project.plugin_version
+def build_release = System.getenv("BUILD_RELEASE") == "true"
+def build_id = System.getenv("BUILD_ID")
+
+if (!build_release) {
+    version += "-SNAPSHOT"
+}
+
+if (build_id != null) {
+    version += "+build.${build_id}"
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://papermc.io/repo/repository/maven-public/'
+    }
+}
+
+dependencies {
+    compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
+}

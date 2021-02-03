@@ -1,0 +1,10 @@
+name: ToolsWithJerry
+version: ${version}
+authors:
+  - T4ron_
+  - GameWithJerry
+main: de.gamewithjerry.toolswithjerry.Main
+api-version: 1.16
+commands:
+  spawnbeacon:
+  hat:

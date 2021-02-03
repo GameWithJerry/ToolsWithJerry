@@ -1,8 +1,0 @@
-name: ToolsWithJerry
-version: 1.0.0
-author: GameWithJerry
-main: de.gamewithjerry.autocrop.Main
-api-version: 1.15
-commands:
-  spawnbeacon:
-  hat:

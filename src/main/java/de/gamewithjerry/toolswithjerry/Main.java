@@ -1,10 +1,8 @@
-package de.gamewithjerry.autocrop;
+package de.gamewithjerry.toolswithjerry;
 
-import de.gamewithjerry.autocrop.command.SpawnBeacon;
-import de.gamewithjerry.autocrop.listener.BlockRightClick;
-import de.gamewithjerry.autocrop.listener.BedListener;
-import de.gamewithjerry.autocrop.listener.DeathListener;
-import de.gamewithjerry.autocrop.listener.EntityChangeListener;
+import de.gamewithjerry.toolswithjerry.listener.BlockRightClick;
+import de.gamewithjerry.toolswithjerry.listener.BedListener;
+import de.gamewithjerry.toolswithjerry.listener.DeathListener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,9 +15,6 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockRightClick(), this);
         pluginManager.registerEvents(new BedListener(), this);
         pluginManager.registerEvents(new DeathListener(), this);
-        pluginManager.registerEvents(new EntityChangeListener(), this);
-
-        getCommand("spawnbeacon").setExecutor(new SpawnBeacon(this));
 
         System.out.println("[ToolsWithJerry] Plugin aktiviert!");
     }
