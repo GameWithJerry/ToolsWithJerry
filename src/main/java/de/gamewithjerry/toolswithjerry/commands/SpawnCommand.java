@@ -24,7 +24,6 @@ public class SpawnCommand implements CommandExecutor {
         }
 
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1F, 1F);
-
         return true;
     }
 }
